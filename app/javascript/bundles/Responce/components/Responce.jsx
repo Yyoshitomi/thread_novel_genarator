@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-const HelloWorld = (props) => {
+const Responce = (props) => {
   const [name, setName] = useState(props.name);
 
   return (
@@ -33,8 +33,8 @@ const HelloWorld = (props) => {
   );
 };
 
-HelloWorld.propTypes = {
+Responce.propTypes = {
   name: PropTypes.string.isRequired, // this is passed from the Rails view
 };
 
-export default HelloWorld;
+export default Responce;
