@@ -23,6 +23,7 @@ const Responce = (props) => {
         寺生まれはスゴイ、俺は感動を覚えずにはいられなかった。
       </ p>
       <hr />
+      <h1>h1. Bootstrap 見出し</h1>
       {/* <form>
         <label htmlFor="name">
           Say hello to:
