@@ -1,12 +1,12 @@
 import React from 'react';
-import Responce from './Responce';
+import Response from './Response';
 
 const Thraed = () => {
 
   return (
     <>
       <h1>寺生まれのTさん</h1>
-      <Responce/>
+      <Response/>
     </>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 
 
-const Responce = ({number, name, date, ch_id, honbun}) => {
+const Response = ({number, name, date, ch_id, honbun}) => {
   
   return (
     <Card>
@@ -19,7 +19,7 @@ const Responce = ({number, name, date, ch_id, honbun}) => {
   );
 };
 
-Responce.propTypes = {
+Response.propTypes = {
   number: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
@@ -27,4 +27,4 @@ Responce.propTypes = {
   honbun: PropTypes.string.isRequired
 };
 
-export default Responce;
+export default Response;
