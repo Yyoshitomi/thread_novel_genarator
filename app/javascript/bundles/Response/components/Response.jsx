@@ -2,13 +2,12 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 
-
 const Response = ({number, name, date, ch_id, honbun}) => {
-  
+
   return (
     <Card>
       <Card.Body>
-        <Card.Title>
+        <Card.Title>  
           {number} 名前：{name} 投稿日：{date} ID:{ch_id}
         </Card.Title>
         <Card.Text>
