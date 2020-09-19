@@ -5,7 +5,6 @@ import { Card } from 'react-bootstrap';
 
 const Responce = ({number, name, date, ch_id, honbun}) => {
   
-
   return (
     <Card>
       <Card.Body>
