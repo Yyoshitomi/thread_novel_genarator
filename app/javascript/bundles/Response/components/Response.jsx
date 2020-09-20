@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Card } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup'
 
+const styles = { whiteSpace: 'pre-line' }
 const Response = ({number, name, date, ch_id, honbun}) => {
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>  
-          {number} 名前：{name} 投稿日：{date} ID:{ch_id}
-        </Card.Title>
-        <Card.Text>
+    <ListGroup.Item>
+      <h5>
+        {number} 名前：{name} 投稿日：{date} ID:{ch_id}
+      </h5>
+      <p style={styles}>
           {honbun}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+        </p>
+    </ListGroup.Item>
   );
 };
 

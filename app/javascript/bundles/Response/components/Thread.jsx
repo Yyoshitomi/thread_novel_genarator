@@ -1,32 +1,31 @@
 import React from 'react';
 import Response from './Response';
-
+import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
 
 const Thread = ({responses}) => {
 
-  console.log(responses)
-
-  const res = responses.map(({number, name, date, ch_id, honbun}) => {
+  const res = responses.map(({number, name, date, ch_id, honbun}, index) => {
 
     return (
-      <ul>
-        <Response
-          name={name}
-          number={number}
-          date={date}
-          ch_id={ch_id}
-          honbun={honbun}
-        />
-      </ul>
+      <Response key={index}
+        name={name}
+        number={number}
+        date={date}
+        ch_id={ch_id}
+        honbun={honbun}
+      />
     );
   });
 
   return (
     <>
-      <h1>寺生まれのTさん</h1>
-      <ul>
+      <Card body>
+        <h2>寺生まれのTさん</h2>
+      </Card>
+      <ListGroup variant="flush">
         {res}
-      </ul>
+      </ListGroup>
     </>
   );
 };
