@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2020_09_22_064907) do
   enable_extension "plpgsql"
 
   create_table "topics", force: :cascade do |t|
-    t.string "title"
-    t.string "default_name"
-    t.boolean "time_display"
-    t.string "start_date"
+    t.string "title", default: "", null: false
+    t.string "default_name", default: "名無しさん", null: false
+    t.boolean "time_display", default: false, null: false
+    t.string "start_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
