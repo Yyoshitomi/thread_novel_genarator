@@ -62,14 +62,37 @@ RSpec.describe Topic, type: :model do
     expect(topic.start_date).to eq Time.now.strftime("%F %T")
   end
 
-  xit "time_displayがfalseだとstart_dateはnilになる" do
+  it "time_displayがfalseだとstart_dateはnilになる" do
     topic = Topic.new(
     title: "スレタイ",
     default_name: "名無しさん",
     time_display: false,
-    start_date: nil
+    start_date: "2020-09-27 00:18:02"
     )
 
     expect(topic.start_date).to eq nil
+  end
+
+  it "start_dateに日時以外の任意の文字列を入力できる" do
+    topic = Topic.new(
+    title: "スレタイ",
+    default_name: "名無しさん",
+    time_display: true,
+    start_date: "孫正義"
+    )
+
+    expect(topic.start_date).to eq "孫正義"
+  end
+
+  it "日時に文字化けした文字列を生成・入力する" do
+    topic = Topic.new(
+    title: "スレタイ",
+    default_name: "名無しさん",
+    time_display: true,
+    start_date: nil
+    )
+    topic.corrupt_start_date
+
+    expect(topic.start_date).to eq "縺ゅ＞縺翫≧縺医♀"
   end
 end
