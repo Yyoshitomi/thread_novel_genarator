@@ -1,4 +1,7 @@
 class Topic < ApplicationRecord
+
+  has_many :posts
+
   validates :title,        presence: true, length: { maximum: 100 }
   validates :default_name, presence: true, length: { maximum: 100 }
   validates :time_display, inclusion: { in: [true, false] }
@@ -11,7 +14,7 @@ class Topic < ApplicationRecord
 
   after_initialize :set_default_values
 
-    private
+    public
 
     def set_default_values
       self.default_name ||= '名無しさん'

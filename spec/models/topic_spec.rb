@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Topic, type: :model do
   it "スレタイ(title)、名無し(default_name)があれば有効" do
     topic = Topic.new(
-    title: "スレタイ",
-    default_name: "名無しさん"
+      title: "スレタイ",
+      default_name: "名無しさん"
     )
 
     expect(topic).to be_valid
@@ -42,10 +42,10 @@ RSpec.describe Topic, type: :model do
 
   it "日時を入力すると登録できる" do
     topic = Topic.new(
-    title: "スレタイ",
-    default_name: "名無しさん",
-    time_display: true,
-    start_date: "2020/09/27"
+      title: "スレタイ",
+      default_name: "名無しさん",
+      time_display: true,
+      start_date: "2020/09/27"
     )
     topic.save!
 
@@ -54,8 +54,8 @@ RSpec.describe Topic, type: :model do
 
   it "日時を表示させる場合、start_dateが未入力だとデフォルトで現在時間を登録する" do
     topic = Topic.new(
-    time_display: true,
-    start_date: nil
+      time_display: true,
+      start_date: nil
     )
 
     # Time.nowを"2020-09-27 00:18:02"みたいな文字列で表示させる
@@ -64,21 +64,22 @@ RSpec.describe Topic, type: :model do
 
   it "time_displayがfalseだとstart_dateはnilになる" do
     topic = Topic.new(
-    title: "スレタイ",
-    default_name: "名無しさん",
-    time_display: false,
-    start_date: "2020-09-27 00:18:02"
+      title: "スレタイ",
+      default_name: "名無しさん",
+      time_display: false,
+      start_date: "2020-09-27 00:18:02"
     )
 
     expect(topic.start_date).to eq nil
+    topic.save!
   end
 
   it "start_dateに日時以外の任意の文字列を入力できる" do
     topic = Topic.new(
-    title: "スレタイ",
-    default_name: "名無しさん",
-    time_display: true,
-    start_date: "孫正義"
+      title: "スレタイ",
+      default_name: "名無しさん",
+      time_display: true,
+      start_date: "孫正義"
     )
 
     expect(topic.start_date).to eq "孫正義"
@@ -86,10 +87,10 @@ RSpec.describe Topic, type: :model do
 
   it "日時に文字化けした文字列を生成・入力する" do
     topic = Topic.new(
-    title: "スレタイ",
-    default_name: "名無しさん",
-    time_display: true,
-    start_date: nil
+      title: "スレタイ",
+      default_name: "名無しさん",
+      time_display: true,
+      start_date: nil
     )
     topic.corrupt_start_date
 
