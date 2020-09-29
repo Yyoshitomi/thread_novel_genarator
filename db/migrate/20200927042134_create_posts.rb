@@ -5,7 +5,9 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.text :honbun,      null: false
       t.integer :number,   null: false
       t.string :date
+      t.boolean :on_id,    null: false
       t.string :ch_id
+      t.boolean :generate_id
       t.references :topic, null: false, foreign_key: true
 
       t.timestamps

@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 2020_09_27_042134) do
     t.text "honbun", null: false
     t.integer "number", null: false
     t.string "date"
+    t.boolean "on_id", null: false
     t.string "ch_id"
+    t.boolean "generate_id"
     t.bigint "topic_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
