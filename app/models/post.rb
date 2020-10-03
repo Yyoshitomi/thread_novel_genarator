@@ -28,6 +28,7 @@ class Post < ApplicationRecord
   after_initialize :set_default_values
 
     def set_default_values
+      p topic
       self.name ||= topic.default_name
 
       if number == nil
