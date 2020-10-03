@@ -8,7 +8,7 @@ class Topic < ApplicationRecord
   validates :start_date,   length: { maximum: 30 }
 
   def corrupt_start_date
-    self.start_date = "縺ゅ＞縺翫≧縺医♀"
+    self.start_date = Mojibake.generate(11)
   end
 
 

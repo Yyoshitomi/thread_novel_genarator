@@ -17,16 +17,11 @@ class Post < ApplicationRecord
     end
   end
 
-  def mojibake(s)
-    s.split('').shuffle[0..12].join
-  end
-
   def id_generator
     if generate_id == true
       SecureRandom.base64[0, 12]
     else generate_id == false
-      moji = "縺ゅ＞�∴縺撰托抵ゑｽｸｹｺｱｲｳｴｵｧｨｩｪ繧譁ｭ怜喧縺代ヱｿｼ繝讖溯ｻ遐皮ｶ樞包搾｡繹ｱ竭竇"
-      mojibake(moji)
+      Mojibake.generate
     end
   end
 

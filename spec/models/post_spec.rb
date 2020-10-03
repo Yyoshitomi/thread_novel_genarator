@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+MOJI =  "縺ゅ＞�∴縺撰托抵ゑｽｸｹｺｱｲｳｴｵｧｨｩｪ繧譁ｭ怜喧縺代ヱｿｼ繝讖溯ｻ遐皮ｶ樞包搾｡繹ｱ竭竇"
+
 RSpec.describe Post, type: :model do
 
   describe 'レスは必ずスレッドに所属する' do
@@ -321,8 +323,7 @@ RSpec.describe Post, type: :model do
         generate_id: false
       )
 
-      moji = "縺ゅ＞�∴縺撰托抵ゑｽｸｹｺｱｲｳｴｵｧｨｩｪ繧譁ｭ怜喧縺代ヱｿｼ繝讖溯ｻ遐皮ｶ樞包搾｡繹ｱ竭竇"
-      expect(moji.split('').any?{ |t| post.ch_id.include?(t) }).to be_truthy
+      expect(MOJI.split('').any?{ |t| post.ch_id.include?(t) }).to be_truthy
     end
   end 
 end

@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+MOJI =  "縺ゅ＞�∴縺撰托抵ゑｽｸｹｺｱｲｳｴｵｧｨｩｪ繧譁ｭ怜喧縺代ヱｿｼ繝讖溯ｻ遐皮ｶ樞包搾｡繹ｱ竭竇"
+
 RSpec.describe Topic, type: :model do
   it "スレタイ(title)、名無し(default_name)があれば有効" do
     topic = Topic.new(
@@ -94,6 +96,6 @@ RSpec.describe Topic, type: :model do
     )
     topic.corrupt_start_date
 
-    expect(topic.start_date).to eq "縺ゅ＞縺翫≧縺医♀"
+    expect(MOJI.split('').any?{ |t| topic.start_date.include?(t) }).to be_truthy
   end
 end
