@@ -1,6 +1,6 @@
 json.topic do
-  json.extract! @topic, :title, :start_date
+  json.extract! @topic, :title
   json.posts do
-    json.array! @topic.posts, :name, :honbun, :number, :ch_id
+    json.array! @topic.posts, :name, :honbun, :number, :date, :ch_id
   end
 end

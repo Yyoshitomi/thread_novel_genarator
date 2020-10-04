@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   validates :name,   presence: true, length: { maximum: 100 }
   validates :honbun, presence: true, length: { maximum: 5000 }
   validates :number, presence: true, numericality: { only_interger: true, less_than_or_equal_to: 1100 } 
+  validates :date,   length: { maximum: 30 }
 
 
   def default_resnum
@@ -17,10 +18,18 @@ class Post < ApplicationRecord
     end
   end
 
+  def date_generator
+    if generate_date
+      Time.now.strftime("%F %T")
+    else
+      Mojibake.generate()
+    end
+  end
+
   def id_generator
-    if generate_id == true
+    if generate_id
       SecureRandom.base64[0, 12]
-    else generate_id == false
+    else
       Mojibake.generate
     end
   end
@@ -28,7 +37,6 @@ class Post < ApplicationRecord
   after_initialize :set_default_values
 
     def set_default_values
-      p topic
       self.name ||= topic.default_name
 
       if number == nil
@@ -39,6 +47,12 @@ class Post < ApplicationRecord
         self.ch_id ||= id_generator
       else on_id == false
         self.ch_id = nil
+      end
+
+      if topic.time_display?
+        self.date ||= date_generator
+      else
+        self.date = nil
       end
     end
 end

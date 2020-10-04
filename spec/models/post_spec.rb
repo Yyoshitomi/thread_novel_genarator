@@ -20,8 +20,7 @@ RSpec.describe Post, type: :model do
       topic = Topic.create(
         title: "スレタイ",
         default_name: "名無しさん",
-        time_display: false,
-        start_date: nil
+        time_display: false
       )
 
       post = topic.posts.new(
@@ -189,11 +188,94 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  # describe '日付' do
-  #   time_displayがfalseの場合、日付はfalseになる
-  #   日付は未入力の場合にデフォルトのTime.nowが登録される
-  #   日付はnewした時点ではTime.nowで登録されているが、好きな文字列に書き換えることもできる
-  # end
+  describe '日付' do
+    it "time_displayがfalseの場合、日付はnilになる" do
+      topic = Topic.create(
+        title: "スレタイ",
+        default_name: nil,
+        time_display: false
+      )
+
+      post = topic.posts.create(
+        name: nil,
+        honbun: "今日も空が青い。",
+        number: nil
+      )
+
+      expect(post.date).to eq nil
+    end
+
+    it "time_displayがfalseの場合、日付を入力してもnilになる" do
+      topic = Topic.create(
+        title: "スレタイ",
+        default_name: nil,
+        time_display: false
+      )
+
+      post = topic.posts.create(
+        name: nil,
+        honbun: "今日も空が青い。",
+        number: nil,
+        date: "孫正義"
+      )
+
+      expect(post.date).to eq nil
+    end
+
+    it "日時を入力すると登録できる" do
+      topic = Topic.create(
+        title: "スレタイ",
+        default_name: "名無しさん",
+        time_display: true
+      )
+
+      post = topic.posts.create(
+        name: nil,
+        honbun: "今日も空が青い。",
+        number: nil,
+        date: "2020/09/27"
+      )
+
+      expect(post.date).to eq "2020/09/27"
+    end
+
+    it "日時を表示させる場合、start_dateが未入力だとデフォルトで現在時間を登録する" do
+      topic = Topic.create(
+        title: "スレタイ",
+        default_name: "名無しさん",
+        time_display: true
+      )
+
+      post = topic.posts.create(
+        name: nil,
+        honbun: "今日も空が青い。",
+        number: nil,
+        date: nil
+      )
+
+      # Time.nowを"2020-09-27 00:18:02"みたいな文字列で表示させる
+      expect(post.date).to eq Time.now.strftime("%F %T")
+    end
+
+    it "日時に文字化けした文字列を生成・入力する" do
+      topic = Topic.create(
+        title: "スレタイ",
+        default_name: "名無しさん",
+        time_display: true
+      )
+
+      post = topic.posts.create(
+        name: nil,
+        honbun: "今日も空が青い。",
+        number: nil,
+        date: nil,
+        generate_date: false
+      )
+
+      expect(MOJI.split('').any?{ |t| post.date.include?(t) }).to be_truthy
+    end
+  end
+  
 
   describe 'ID' do
     it "ch_idは好きな文字列を入力できる" do

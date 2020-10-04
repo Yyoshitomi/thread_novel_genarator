@@ -8,7 +8,8 @@ RSpec.describe "Api::Topics", type: :request do
     topic = Topic.create!(
       id: 1,
       title: "スレタイ",
-      default_name: "名無しさん"
+      default_name: "名無しさん",
+      time_display: false
     )
     
 

@@ -7,7 +7,6 @@ class CreateTopics < ActiveRecord::Migration[6.0]
       t.string :title,         null: false, default: ''
       t.string :default_name,  null: false, default: '名無しさん'
       t.boolean :time_display, null:false, default: false
-      t.string :start_date
 
       t.timestamps
     end

@@ -11,6 +11,9 @@ gem 'react_on_rails', '12.0.2'
 gem 'bootstrap', '~> 4.5.2'
 gem 'jquery-rails'
 
+gem 'haml-rails'
+gem 'erb2haml'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

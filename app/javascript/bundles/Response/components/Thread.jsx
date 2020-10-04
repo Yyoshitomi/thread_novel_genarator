@@ -3,9 +3,11 @@ import Response from './Response';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 
-const Thread = ({responses}) => {
+const Thread = ({ topic: { title, posts} }) => {
+  // console.log(title)
+  // console.log(posts)
 
-  const res = responses.map(({number, name, date, ch_id, honbun}, index) => {
+  const res = posts.map(({ number, name, date, ch_id, honbun}, index) => {
 
     return (
       <Response key={index}
@@ -21,7 +23,7 @@ const Thread = ({responses}) => {
   return (
     <>
       <Card body>
-        <h2>寺生まれのTさん</h2>
+      <h2>{title}</h2>
       </Card>
       <ListGroup variant="flush">
         {res}

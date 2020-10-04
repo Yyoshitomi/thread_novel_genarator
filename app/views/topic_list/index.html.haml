@@ -1,0 +1,15 @@
+.card
+  .card-body
+    .d-flex.w-100.flex-column
+      %h3.card-title.mb-1 スレッド一覧
+      %small.card-text
+        = @topics.length
+        件ヒットしました。
+  %ul.list-group.list-group-flush
+    - @topics.each do |topic|
+      %a.list-group-item.list-group-item-action{:href => "/topics/#{topic.id}"}
+        .d-flex.w-100.justify-content-between
+          %h5.mb-1= topic.title
+        %p.mb-1= render partial: 'post', locals: { post: topic.posts.first }
+        -# { post: topic.posts.first }は、変数postを定義し、topic.posts.firstを代入している。
+           なので、_post.html.hamlでpost.number(= topic.posts.first.number)と呼び出すことができる

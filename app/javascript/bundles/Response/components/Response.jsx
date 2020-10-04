@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup'
 
 const styles = { whiteSpace: 'pre-line' }
-const Response = ({number, name, date, ch_id, honbun}) => {
+const Response = ({ number, name, date, ch_id, honbun}) => {
 
   return (
     <ListGroup.Item>
@@ -11,8 +11,8 @@ const Response = ({number, name, date, ch_id, honbun}) => {
         {number} 名前：{name} 投稿日：{date} ID:{ch_id}
       </h5>
       <p style={styles}>
-          {honbun}
-        </p>
+        {honbun}
+      </p>
     </ListGroup.Item>
   );
 };

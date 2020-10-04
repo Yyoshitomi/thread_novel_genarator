@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 2020_09_27_042134) do
     t.string "name", null: false
     t.text "honbun", null: false
     t.integer "number", null: false
-    t.string "date"
-    t.boolean "on_id", null: false
+    t.string "date", default: "f"
+    t.boolean "generate_date", default: true
+    t.boolean "on_id", default: false, null: false
     t.string "ch_id"
     t.boolean "generate_id"
     t.bigint "topic_id", null: false
@@ -33,7 +34,6 @@ ActiveRecord::Schema.define(version: 2020_09_27_042134) do
     t.string "title", default: "", null: false
     t.string "default_name", default: "名無しさん", null: false
     t.boolean "time_display", default: false, null: false
-    t.string "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
