@@ -2,6 +2,7 @@ import React from 'react';
 import Response from './Response';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
+// import ResForm from './ResForm';
 
 const Thread = ({ topic: { title, posts} }) => {
   // console.log(title)
@@ -30,6 +31,14 @@ const Thread = ({ topic: { title, posts} }) => {
       </ListGroup>
     </>
   );
+
+  // const form = ({}) => {
+
+  // return (
+  //   <>
+  //     {form}
+  //   </>
+  // );
 };
 
 
