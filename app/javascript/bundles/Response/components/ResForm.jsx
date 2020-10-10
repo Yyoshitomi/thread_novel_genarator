@@ -1,11 +1,13 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-const ResForm = ({ }) => {
+const ResForm = () => {
 
   return (
-    <Form>
+    <>
       <Row className="mb-3">
         <Col sm="4">
           <InputGroup>
@@ -13,13 +15,12 @@ const ResForm = ({ }) => {
               <InputGroup.Text id="basic-addon1">レス番</InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
-              placeholder="デフォルト値"
-              aria-label="Username"
+              placeholder="デフォルト値" 
+              aria-label="number"
               aria-describedby="basic-addon1"
             />
           </InputGroup>
         </Col>
-
         <Col sm="8">
           <InputGroup>
             <DropdownButton
@@ -33,13 +34,12 @@ const ResForm = ({ }) => {
               <Dropdown.Item href="#">ハンドルネーム</Dropdown.Item>
             </DropdownButton>
             <Form.Control
-              type="password"
+              type="name"
               placeholder="デフォルト値。ハンドルネームを洗濯するとドロップボタン化"
             />
           </InputGroup>
         </Col>
       </Row>
-
       <Row className="mb-3">
         <Col sm="5">
           <InputGroup>
@@ -50,7 +50,6 @@ const ResForm = ({ }) => {
             </InputGroup.Append>
           </InputGroup>
         </Col>
-
         <Col sm="7">
           <InputGroup>
             <InputGroup.Prepend>
@@ -65,11 +64,12 @@ const ResForm = ({ }) => {
           </InputGroup>
         </Col>
       </Row>
-
-      <Form.Group controlId="honbun">
-        <Form.Control as="textarea" rows="3" placeholder="本文を入力してください" />
-      </Form.Group>
-    </Form>
+      <Row className="mb-3">
+        <Form.Group>
+          <Form.Control as="textarea" rows="3" placeholder="本文を入力してください" />
+        </Form.Group>
+      </Row>
+    </>
   );
 };
 

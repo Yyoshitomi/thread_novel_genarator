@@ -4,7 +4,8 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 // import ResForm from './ResForm';
 
-const Thread = ({ topic: { title, posts} }) => {
+
+const Thread = ({ topic: { title, posts } }) => {
   // console.log(title)
   // console.log(posts)
 
@@ -20,25 +21,18 @@ const Thread = ({ topic: { title, posts} }) => {
       />
     );
   });
+  
 
   return (
     <>
       <Card body>
       <h2>{title}</h2>
       </Card>
-      <ListGroup variant="flush">
-        {res}
-      </ListGroup>
+      <ListGroup variant="flush">{res}</ListGroup>
+      <br/>
+      {/* <ResForm /> */}
     </>
   );
-
-  // const form = ({}) => {
-
-  // return (
-  //   <>
-  //     {form}
-  //   </>
-  // );
 };
 
 
