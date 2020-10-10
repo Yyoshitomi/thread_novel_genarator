@@ -2,7 +2,7 @@ import React from 'react';
 import Response from './Response';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
-// import ResForm from './ResForm';
+import ResForm from './ResForm';
 
 
 const Thread = ({ topic: { title, posts } }) => {
@@ -30,7 +30,7 @@ const Thread = ({ topic: { title, posts } }) => {
       </Card>
       <ListGroup variant="flush">{res}</ListGroup>
       <br/>
-      {/* <ResForm /> */}
+      <ResForm />
     </>
   );
 };

@@ -1,75 +1,126 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Formik } from "formik";
 import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import Dropdown from 'react-bootstrap/Dropdown'
+
+
+// const schema = yup.object({
+//   number: yup.int().required()
+//   name: yup.string().required(),
+//   date: yup.string().required(),
+//   id: yup.string().required(),
+//   honbun: yup.string().required(),
+//   terms: yup.bool().required(),
+// });
 
 const ResForm = () => {
 
   return (
-    <>
-      <Row className="mb-3">
-        <Col sm="4">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">レス番</InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl
-              placeholder="デフォルト値" 
-              aria-label="number"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
-        </Col>
-        <Col sm="8">
-          <InputGroup>
-            <DropdownButton
-              as={InputGroup.Prepend}
-              variant="outline-secondary"
-              title="名前"
-              id="input-group-dropdown-name"
-            >
-              <Dropdown.Item href="#">デフォルトネーム</Dropdown.Item>
-              <Dropdown.Item href="#">自由入力</Dropdown.Item>
-              <Dropdown.Item href="#">ハンドルネーム</Dropdown.Item>
-            </DropdownButton>
-            <Form.Control
-              type="name"
-              placeholder="デフォルト値。ハンドルネームを洗濯するとドロップボタン化"
-            />
-          </InputGroup>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col sm="5">
-          <InputGroup>
-            <Form.Control type="id" placeholder="投稿日: デフォルト値" />
-            <InputGroup.Append>
-              <InputGroup.Text id="generate_id">文字化け</InputGroup.Text>
-              <InputGroup.Checkbox />
-            </InputGroup.Append>
-          </InputGroup>
-        </Col>
-        <Col sm="7">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="on_id">id表示</InputGroup.Text>
-              <InputGroup.Checkbox />
-            </InputGroup.Prepend>
-            <Form.Control type="id" placeholder="ID: デフォルト値" />
-            <InputGroup.Append>
-              <InputGroup.Text id="generate_id">文字化け</InputGroup.Text>
-              <InputGroup.Checkbox />
-            </InputGroup.Append>
-          </InputGroup>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group>
-          <Form.Control as="textarea" rows="3" placeholder="本文を入力してください" />
-        </Form.Group>
-      </Row>
-    </>
+    
+    <Formik
+      initialValues={{
+        number : '',
+        name : '',
+        date : '',
+        id : ''
+      }}
+      onSubmit={async values => {alert(JSON.stringify(values, null, 2));}}
+      render={(props) => (
+        <Form onSubmit={props.handleSubmit}>
+          <Form.Row>
+            <Form.Group as={Col} md="3">
+              <Form.Label>レス番</Form.Label>
+              <FormControl
+                type="text"
+                name="number"
+                value={props.values.number}
+                onChange={props.handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} md="6">
+              <Form.Label>名前</Form.Label>
+              <FormControl
+                type="text"
+                name="name"
+                value={props.values.name}
+                onChange={props.handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Dropdown>
+                <Dropdown.Toggle className="mt-4" variant="success" id="dropdown-basic">
+                  固定ハンドルネーム
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#">既存のコテハン</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} md="4">
+              <Form.Label>投稿日</Form.Label>
+              <FormControl
+                type="text"
+                name="date"
+                value={props.values.date}
+                onChange={props.handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              <Form.Check
+                className="mt-5"
+                type="checkbox"
+                name="date_mojibake"
+                checked={props.values.check}
+                // onPress={() => setFieldValue('check', !values.check)}
+                label="文字化け"
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="4">
+              <Form.Label>ID</Form.Label>
+              <FormControl
+                type="text"
+                name="ch_id"
+                value={props.values.ch_id}
+                onChange={props.handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              <Form.Check
+                className="mt-5"
+                type="checkbox"
+                name="chId_mojibake"
+                checked={props.values.check}
+                // onPress={() => setFieldValue('check', !values.check)}
+                label="文字化け"
+              />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Control
+                as="textarea"
+                name="honbun"
+                value={props.values.honbun}
+                onChange={props.handleChange}
+                rows="3"
+                placeholder="本文を入力してください"
+              />
+            </Form.Group>
+          </Form.Row>
+
+          <Button type="submit">投稿する</Button>
+        </Form>
+      )}
+    />
   );
 };
 
