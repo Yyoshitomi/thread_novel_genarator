@@ -3,6 +3,7 @@ import Response from './Response';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 import ResForm from './ResForm';
+import Button from 'react-bootstrap/Button'
 
 
 const Thread = ({ topic: { title, posts } }) => {
@@ -27,10 +28,10 @@ const Thread = ({ topic: { title, posts } }) => {
     <>
       <Card body>
       <h2>{title}</h2>
+      <Button href="/topic_list" variant="outline-secondary" className="float-right">戻る</Button>
       </Card>
       <ListGroup variant="flush">{res}</ListGroup>
-      <br/>
-      <ResForm />
+      <br />
     </>
   );
 };

@@ -6,6 +6,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
+import Response from './Response';
 
 
 // const schema = yup.object({
@@ -32,7 +33,7 @@ const ResForm = () => {
       render={(props) => (
         <Form onSubmit={props.handleSubmit}>
           <Form.Row>
-            <Form.Group as={Col} md="3">
+            <Form.Group as={Col} md="2">
               <Form.Label>レス番</Form.Label>
               <FormControl
                 type="text"
@@ -51,7 +52,7 @@ const ResForm = () => {
                 onChange={props.handleChange}
               />
             </Form.Group>
-            <Form.Group as={Col} md="3">
+            <Form.Group as={Col} md="4">
               <Dropdown>
                 <Dropdown.Toggle className="mt-4" variant="success" id="dropdown-basic">
                   固定ハンドルネーム
@@ -117,7 +118,7 @@ const ResForm = () => {
             </Form.Group>
           </Form.Row>
 
-          <Button type="submit">投稿する</Button>
+          <Button className="float-right" type="submit">投稿する</Button>
         </Form>
       )}
     />
