@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   validates :date,   length: { maximum: 30 }
 
 
+  def self.id_generator
+    SecureRandom.base64[0, 12]
+  end
+
   def default_resnum
     pre_res = topic.posts.last
     if pre_res
@@ -26,9 +30,10 @@ class Post < ApplicationRecord
     end
   end
 
+
   def id_generator
     if generate_id
-      SecureRandom.base64[0, 12]
+      self.id_generator
     else
       Mojibake.generate
     end

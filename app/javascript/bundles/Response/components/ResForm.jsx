@@ -6,27 +6,21 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
-import Response from './Response';
+import moment from "moment";
 
+const defaultDate = moment().format("YYYY-MM-DD hh:mm:ss")
 
-// const schema = yup.object({
-//   number: yup.int().required()
-//   name: yup.string().required(),
-//   date: yup.string().required(),
-//   id: yup.string().required(),
-//   honbun: yup.string().required(),
-//   terms: yup.bool().required(),
-// });
+const ResForm = ({ threadConfig }) => {
 
-const ResForm = () => {
+  console.log(threadConfig)
 
   return (
     
     <Formik
       initialValues={{
-        number : '',
-        name : '',
-        date : '',
+        number: '',
+        name: threadConfig.defaultName,
+        date: defaultDate,
         id : ''
       }}
       onSubmit={async values => {alert(JSON.stringify(values, null, 2));}}
@@ -63,27 +57,30 @@ const ResForm = () => {
               </Dropdown>
             </Form.Group>
           </Form.Row>
-
           <Form.Row>
-            <Form.Group as={Col} md="4">
-              <Form.Label>投稿日</Form.Label>
-              <FormControl
-                type="text"
-                name="date"
-                value={props.values.date}
-                onChange={props.handleChange}
-              />
-            </Form.Group>
-            <Form.Group as={Col} md="2">
-              <Form.Check
-                className="mt-5"
-                type="checkbox"
-                name="date_mojibake"
-                checked={props.values.check}
-                // onPress={() => setFieldValue('check', !values.check)}
-                label="文字化け"
-              />
-            </Form.Group>
+          { threadConfig.timeDisplay && (
+            <>
+              <Form.Group as={Col} md="4">
+                <Form.Label>投稿日</Form.Label>
+                <FormControl
+                  type="text"
+                  name="date"
+                  value={props.values.date}
+                  onChange={props.handleChange}
+                />
+              </Form.Group>
+              <Form.Group as={Col} md="2">
+                <Form.Check
+                  className="mt-5"
+                  type="checkbox"
+                  name="date_mojibake"
+                  checked={props.values.check}
+                  // onPress={() => setFieldValue('check', !values.check)}
+                  label="文字化け"
+                />
+              </Form.Group>
+            </>) }
+
             <Form.Group as={Col} md="4">
               <Form.Label>ID</Form.Label>
               <FormControl

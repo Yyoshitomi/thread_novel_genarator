@@ -1,4 +1,4 @@
-class Api::TopicController < ApplicationController
+class Api::TopicsController < ApplicationController
 
     def index
 
@@ -24,4 +24,9 @@ class Api::TopicController < ApplicationController
     @topic = Topic.find(params[:id])
   end
 
+  def generate_id 
+    @default_id = Post.id_generator
+  
+    render plain: @default_id
+  end
 end
