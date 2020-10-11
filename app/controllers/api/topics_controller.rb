@@ -29,4 +29,5 @@ class Api::TopicsController < ApplicationController
   
     render plain: @default_id
   end
+
 end
