@@ -28,7 +28,7 @@ const Thread = ({ topic: { title, posts } }) => {
     <>
       <Card body>
       <h2>{title}</h2>
-      <Button href="/topic_list" variant="outline-secondary" className="float-right">戻る</Button>
+      <Button href="/topics" variant="outline-secondary" className="float-right">戻る</Button>
       </Card>
       <ListGroup variant="flush">{res}</ListGroup>
       <br />

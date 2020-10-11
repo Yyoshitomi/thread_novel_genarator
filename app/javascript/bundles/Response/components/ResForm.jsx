@@ -18,7 +18,7 @@ const ResForm = ({ threadConfig }) => {
     
     <Formik
       initialValues={{
-        number: '',
+        number: threadConfig.defaultId,
         name: threadConfig.defaultName,
         date: defaultDate,
         id : ''
