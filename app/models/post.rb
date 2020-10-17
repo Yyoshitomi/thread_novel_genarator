@@ -33,7 +33,7 @@ class Post < ApplicationRecord
 
   def id_generator
     if generate_id
-      self.id_generator
+      Post.id_generator
     else
       Mojibake.generate
     end
