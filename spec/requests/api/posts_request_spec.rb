@@ -19,7 +19,7 @@ RSpec.describe "Api::Posts", type: :request do
                                       number: 1
                                     }
                                   }
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(201)
     end
 
     it "トピックの最初のレスが正しく追加されていること" do
@@ -42,6 +42,24 @@ RSpec.describe "Api::Posts", type: :request do
       expect(Post.last.honbun).to eq "今日も空が青い。"
       expect(Post.last.number).to eq 1
     end
-  end
+    
+    it "returns ok" do
+      Topic.create(
+        id: 1,
+        title: "スレタイ",
+        default_name: "名無しさん",
+        time_display: false
+      )
 
+      post '/api/posts', params: { format: :json,
+                                    post: {
+                                      topic_id: 1,
+                                      name: "名無しさん",
+                                      honbun: nil,
+                                      number: 1
+                                    }
+                                  }
+      expect(response.status).to eq(400)
+    end
+  end
 end

@@ -3,9 +3,9 @@ class Api::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      head :ok
+      head :created
     else
-      render json: { status: 'ERROR', data: @post.errors }
+      render json: { data: @post.errors }, status: :bad_request
     end
   end
 
