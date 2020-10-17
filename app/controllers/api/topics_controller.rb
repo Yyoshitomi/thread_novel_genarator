@@ -22,6 +22,7 @@ class Api::TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    render json: { status: 200 }
   end
 
   def generate_id

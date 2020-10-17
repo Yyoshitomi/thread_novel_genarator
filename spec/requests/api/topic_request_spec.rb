@@ -13,7 +13,7 @@ RSpec.describe "Api::Topics", type: :request do
     )
     
 
-    get '/api/topic/1', params: { format: :json}
+    get '/api/topics/1', params: { format: :json }
     expect(response.status).to eq(200)
   end
 
