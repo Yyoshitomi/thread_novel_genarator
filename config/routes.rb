@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :api do
+    get 'posts/create'
+  end
   get 'hello_world', to: 'hello_world#index'
   get 'test', to: 'hello_world#test'
 
