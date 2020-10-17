@@ -44,8 +44,8 @@ const ResForm = ({ threadConfig }) => {
   })
 
     return (
-      <Card>
-        <Card body onSubmit={formik.handleSubmit}>
+      <Card body>
+        <Form onSubmit={formik.handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} md="2">
               <Form.Label>レス番</Form.Label>
@@ -136,7 +136,7 @@ const ResForm = ({ threadConfig }) => {
           </Form.Row>
 
           <Button className="float-right" type="submit">投稿する</Button>
-        </Card>
+        </Form>
       </Card>
   );
 };
