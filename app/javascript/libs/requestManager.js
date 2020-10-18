@@ -26,3 +26,24 @@ export async function fetchEntity(path, param, options = {}) {
     throw error;
   }
 }
+
+export async function postEntity(path, data, options = {}) {
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: targetUrl(path),
+      data,
+      headers: ReactOnRails.authenticityHeaders(),
+      ...options
+    });
+
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.warn('error!', error.response.status, error.data);
+    } else {
+      console.warn('error', error);
+    }
+    throw error;
+  }
+}

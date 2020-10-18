@@ -9,11 +9,12 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import moment from "moment";
 import Card from 'react-bootstrap/Card'
 
-import { fetchEntity } from "../../../libs/requestManager";
+import { fetchEntity, postEntity } from "../../../libs/requestManager";
 
 const defaultDate = moment().format("YYYY-MM-DD hh:mm:ss")
 
 const getRandomId = async () =>  await fetchEntity('topics', 'generate_id');
+const postValues = async values => await postEntity('posts', values);
 
 const ResForm = ({ threadConfig }) => {
   const [initialValues, setInitialValues] = useState(
@@ -40,8 +41,7 @@ const ResForm = ({ threadConfig }) => {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: async values => { alert(JSON.stringify(values, null, 2)); }
-  })
+    onSubmit: postValues})
 
     return (
       <Card body>
