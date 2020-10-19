@@ -1,0 +1,20 @@
+= form_for (@topic) do |f|
+  %p
+    = f.label :title
+    %br
+      = f.text_field :title
+    %br
+  %p
+    = f.label :default_name
+    %br
+      = f.text_field :default_name
+    %br
+  %p
+    = f.label :time_display
+    %br
+      = f.text_field :time_display
+    %br
+  %p= f.submit
+
+  %br
+  = link_to "戻る", topics_path, class: 'btn btn-primary'

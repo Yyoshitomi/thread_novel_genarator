@@ -20,10 +20,12 @@ class Api::TopicsController < ApplicationController
     #   }
   end
 
-  def show
-    @topic = Topic.find(params[:id])
-    render json: { status: 200 }
-  end
+  # def show
+  #   @topic = Topic.find(params[:id])
+  #   render json: { status: 200 }
+  # end
+
+  private
 
   def generate_id
     @default_id = Post.id_generator
