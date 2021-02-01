@@ -1,20 +1,21 @@
+%h1 新規登録
 = form_for (@topic) do |f|
   %p
-    = f.label :title
+    = f.label :スレッドタイトルを設定してください。
     %br
       = f.text_field :title
     %br
   %p
-    = f.label :default_name
+    = f.label :デフォルトの名前を設定してください。
     %br
       = f.text_field :default_name
     %br
   %p
-    = f.label :time_display
+    = f.label :日時を表示しますか？
     %br
-      = f.text_field :time_display
+      = f.check_box :time_display, { multiple: true, include_hidden: false }
     %br
   %p= f.submit
 
   %br
-  = link_to "戻る", topics_path, class: 'btn btn-primary'
+  = link_to "戻る", topics_path, class: 'btn btn-outline-secondary btn-light'

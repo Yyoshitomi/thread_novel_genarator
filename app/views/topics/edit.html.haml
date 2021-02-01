@@ -1,0 +1,21 @@
+%h1 編集
+= form_for (@topic) do |f|
+  %p
+    = f.label :スレッドタイトルを編集してください。
+    %br
+      = f.text_field :title
+    %br
+  %p
+    = f.label :デフォルトの名前を編集してください。
+    %br
+      = f.text_field :default_name
+    %br
+  %p
+    = f.label :日時表示を編集しますか？
+    %br
+      = f.check_box :time_display, { multiple: true, include_hidden: false }
+    %br
+  %p= f.submit
+
+  %br
+  = link_to "戻る", topics_path, class: 'btn btn-outline-secondary btn-light'
