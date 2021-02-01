@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+
 import ListGroup from 'react-bootstrap/ListGroup'
 
 const styles = { whiteSpace: 'pre-line' }
-const Response = ({ number, name, date, ch_id, honbun}) => {
+const Response = ({ number, name, date, ch_id, honbun }) => {
 
   return (
     <ListGroup.Item>
