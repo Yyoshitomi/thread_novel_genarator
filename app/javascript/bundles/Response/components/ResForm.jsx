@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
+import React, { useState, useEffect } from 'react'
+
+import { useFormik } from 'formik'
+
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
+// import InputGroup from 'react-bootstrap/InputGroup'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
-import moment from "moment";
 import Card from 'react-bootstrap/Card'
 
+import moment from 'moment'
+
 import { fetchEntity, postEntity } from "../../../libs/requestManager";
+
 
 const defaultDate = moment().format("YYYY-MM-DD hh:mm:ss")
 
@@ -19,7 +23,7 @@ const postValues = async values => await postEntity('posts', values);
 const ResForm = ({ threadConfig }) => {
   const [initialValues, setInitialValues] = useState(
       {
-        number: '',
+        number: '1',
         name: threadConfig.defaultName,
         date: defaultDate,
         ch_id: threadConfig.defaultID,
@@ -31,13 +35,13 @@ const ResForm = ({ threadConfig }) => {
   // Post後にデフォルト値を入れ直す。
   // TODO: EffectのイベントフックにPOSTを指定する
   useEffect(() => {
-    return async() => setInitialValues({
+    return async () => setInitialValues({
       name: threadConfig.defaultName,
       date: defaultDate,
       ch_id: await getRandomId(),
       timeDisplay: threadConfig.timeDisplay
     })
-  }, [])
+  }, []);
 
   const formik = useFormik({
     initialValues,
@@ -78,28 +82,25 @@ const ResForm = ({ threadConfig }) => {
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            {formik.initialValues.timeDisplay && (
-              <>
-                <Form.Group as={Col} md="4">
-                  <Form.Label>投稿日</Form.Label>
-                  <FormControl
-                    type="text"
-                    name="date"
-                    value={formik.values.date}
-                    onChange={formik.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group as={Col} md="2">
-                  <Form.Check
-                    className="mt-5"
-                    type="checkbox"
-                    name="date_mojibake"
-                    checked={formik.values.check}
-                    // onPress={() => setFieldValue('check', !values.check)}
-                    label="文字化け"
-                  />
-                </Form.Group>
-              </>)}
+            <Form.Group as={Col} md="4">
+              <Form.Label>投稿日</Form.Label>
+              <FormControl
+                type="text"
+                name="date"
+                value={formik.values.date}
+                onChange={formik.handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              <Form.Check
+                className="mt-5"
+                type="checkbox"
+                name="date_mojibake"
+                checked={formik.values.check}
+                // onPress={() => setFieldValue('check', !values.check)}
+                label="文字化け"
+              />
+            </Form.Group>
 
             <Form.Group as={Col} md="4">
               <Form.Label>ID</Form.Label>
