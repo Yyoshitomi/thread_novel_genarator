@@ -11,15 +11,17 @@ RSpec.describe "Api::Posts", type: :request do
         time_display: false
       )
 
-      post '/api/posts', params: { format: :json,
-                                    post: {
-                                      topic_id: 1,
-                                      name: "名無しさん",
-                                      honbun: "今日も空が青い。",
-                                      number: 1
-                                    }
-                                  }
-      expect(response).to have_http_status(201)
+      expect{ post '/api/posts',
+               params: { format: :json,
+                  post: {
+                    topic_id: 1,
+                    name: "名無しさん",
+                    honbun: "今日も空が青い。",
+                    number: 1
+                  }
+               }
+      }.to change(Post, :count).by(1)
+      expect(response).to have_http_status(:created)
     end
 
     it "トピックの最初のレスが正しく追加されていること" do
