@@ -25,12 +25,9 @@ class Api::TopicsController < ApplicationController
   #   render json: { status: 200 }
   # end
 
-  private
-
   def generate_id
     @default_id = Post.id_generator
   
     render plain: @default_id
   end
-
 end

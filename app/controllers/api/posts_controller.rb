@@ -12,6 +12,9 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:number, :name, :date, :ch_id, :honbun, :topic_id)
+    params.require(:post).permit(
+      :number, :name, :date,
+      :ch_id, :honbun,
+      :topic_id, :on_id)
   end
 end
