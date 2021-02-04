@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { useFormik } from 'formik'
+import { useFormikContext, useFormik } from 'formik'
 
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
@@ -21,31 +21,34 @@ const getRandomId = async () =>  await fetchEntity('topics', 'generate_id');
 const postValues = async values => await postEntity('posts', values);
 
 const ResForm = ({ threadConfig }) => {
-  const [initialValues, setInitialValues] = useState(
-      {
-        number: '1',
-        name: threadConfig.defaultName,
-        date: defaultDate,
-        ch_id: threadConfig.defaultID,
-        honbun: '',
-        timeDisplay: threadConfig.timeDisplay
-      }
-    )
 
-  // Post後にデフォルト値を入れ直す。
-  // TODO: EffectのイベントフックにPOSTを指定する
-  useEffect(() => {
-    return async () => setInitialValues({
-      name: threadConfig.defaultName,
-      date: defaultDate,
-      ch_id: await getRandomId(),
-      timeDisplay: threadConfig.timeDisplay
-    })
-  }, []);
+  const initialValues = {
+    topic_id: threadConfig.topicId,
+    number: threadConfig.number,
+    name: threadConfig.defaultName,
+    date: defaultDate,
+    ch_id: threadConfig.defaultID,
+    honbun: '',
+    timeDisplay: threadConfig.timeDisplay,
+    on_id: true
+  }
+  
+  const onSubmit = async (values, {resetForm}) => {
+    postValues(values);
+    
+    resetForm({
+          values: 
+                {
+                  ...initialValues,
+                  number: String(parseInt(values.number) + 1),
+                  ch_id: await getRandomId()
+              }
+        })
+  }
 
   const formik = useFormik({
     initialValues,
-    onSubmit: postValues})
+    onSubmit})
 
     return (
       <Card body>
